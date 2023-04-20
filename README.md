@@ -6,8 +6,6 @@
 
 Spells VR is a Virtual Reality game for the Oculus Quest 2 that utilizes hand tracking in it's gameplay's core mechanics. In the game the player becomes a mage whose objective is to defend his tower from incoming enemies. 
 
-This repository is made for showcasing the project and letting recruiters get familiar with my style of writing code. That's why only scripts are part of it.
-
 <p align="center">
   <img width="460" src="https://user-images.githubusercontent.com/62397807/222025151-b358399b-b804-4207-b502-9aab492aad2b.png">
 </p>
@@ -20,3 +18,5 @@ This repository is made for showcasing the project and letting recruiters get fa
 <p align="center">
   <img width="460" src="https://user-images.githubusercontent.com/62397807/222025242-75848485-08d1-421e-894c-425d55fa57f9.png">
 </p>
+
+The project was written in C# using the Unity Engine. The goal of this repository is to demonstrate my programming skills, hence it only contains its scripts.
