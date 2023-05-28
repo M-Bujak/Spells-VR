@@ -1,7 +1,7 @@
 # Spells-VR
 https://github.com/M-Bujak/Spells-VR/assets/62397807/f44ee691-2ab8-4dc1-b4fc-2567e3677d33
 
-Spells VR is a Virtual Reality game for the Oculus Quest 2 that utilizes hand tracking in it's gameplay's core mechanics. In the game the player becomes a mage whose objective is to defend his tower from incoming enemies. 
+Spells VR is a Virtual Reality game for the Meta Quest 2 headset that utilizes hand tracking in it's gameplay's core mechanics. In the game the player becomes a mage whose objective is to defend his tower from incoming enemies. 
 
 <p align="center">
   <img width="460" src="https://user-images.githubusercontent.com/62397807/222025407-9e34ee7e-a8e1-4131-b5ff-11f41bdd9449.jpg">
