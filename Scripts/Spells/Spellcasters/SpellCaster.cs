@@ -7,7 +7,7 @@ public abstract class SpellCaster : MonoBehaviour
     [field: SerializeField]
     public SpellCaster[] BlocksThese { get; private set; }
     [field: SerializeField]
-    private SpellBlocker SpellSemaphore { get; set; }
+    private SpellBlocker SpellBlocker { get; set; }
 
     protected bool IsBeingCast { get; set; }
     public bool IsBeingBlocked { get; protected set; }
@@ -34,13 +34,13 @@ public abstract class SpellCaster : MonoBehaviour
         }
 
         IsBeingCast = true;
-        SpellSemaphore.BlockOthers(this);
+        SpellBlocker.BlockOthers(this);
     }
 
     public virtual void DisableCast()
     {
         IsBeingCast = false;
-        SpellSemaphore.UnblockOthers(this);
+        SpellBlocker.UnblockOthers(this);
     }
 
     public virtual void Block()

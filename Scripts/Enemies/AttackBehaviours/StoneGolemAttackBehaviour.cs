@@ -56,6 +56,6 @@ public class StoneGolemAttackBehaviour : AttackBehaviour
 
     private void ThrowBoulder()
     {
-        Instantiate(BoulderPrefab, transform.position, Quaternion.identity, this.transform);
+        Instantiate(BoulderPrefab, transform.position, Quaternion.identity);
     }
 }

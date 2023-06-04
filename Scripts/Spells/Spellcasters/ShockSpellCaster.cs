@@ -26,7 +26,11 @@ public class ShockSpellCaster : SpellCaster
     [field: SerializeField]
     private LayerMask RaycastMask { get; set; }
     [field: SerializeField]
-    private float SphereCastRadius { get; set; }
+    private LayerMask SmallSpherecastMask { get; set; }
+    [field: SerializeField]
+    private float SmallSphereCastRadius { get; set; }
+    [field: SerializeField]
+    private float BigSphereCastRadius { get; set; }
 
 
     private OVRBone IndexFingerTip { get; set; }
@@ -86,19 +90,33 @@ public class ShockSpellCaster : SpellCaster
 
         if (isHit == true && hit.collider.gameObject.layer == 6)
         {
-            ShootLightning(IndexFingerTip.Transform.position, hit.transform.position);
             DealDamage(hit.collider);
             return;
         }
 
-        isHit = RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(IndexFingerKnuckle.Transform.position,
-                SphereCastRadius, IndexFingerKnuckle.Transform.right, out hit, 10,
-                RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor);
+        bool raycastHitTowerTop = (isHit == true && hit.collider.gameObject.layer == 12);
 
-        if (isHit == true && hit.collider.gameObject.layer == 6)
+        if (!raycastHitTowerTop)
         {
-            DealDamage(hit.collider);
-            return;
+            isHit = RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(IndexFingerKnuckle.Transform.position,
+                    SmallSphereCastRadius, IndexFingerKnuckle.Transform.right, out hit, 10, SmallSpherecastMask,
+                    RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor);
+
+            if (isHit == true && hit.collider.gameObject.layer == 6)
+            {
+                DealDamage(hit.collider);
+                return;
+            }
+
+            isHit = RotaryHeart.Lib.PhysicsExtension.Physics.SphereCast(IndexFingerKnuckle.Transform.position,
+                    BigSphereCastRadius, IndexFingerKnuckle.Transform.right, out hit, 10, SmallSpherecastMask,
+                    RotaryHeart.Lib.PhysicsExtension.PreviewCondition.Editor);
+
+            if (isHit == true && hit.collider.gameObject.layer == 6)
+            {
+                DealDamage(hit.collider);
+                return;
+            }
         }
 
         LightningVFX.SetActive(false);

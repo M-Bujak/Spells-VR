@@ -12,6 +12,7 @@ public class SpellBlocker : MonoBehaviour
     [field: SerializeField]
     private GameObject[] BlockVFX { get; set; }
 
+    private bool IsSpellBlockEffectActive { get; set; }
     private List<SpellCaster> BlockingSpellCasters { get; set; }
         = new List<SpellCaster>();
 
@@ -22,6 +23,8 @@ public class SpellBlocker : MonoBehaviour
 
     private void BlockAllSpellCasters()
     {
+        IsSpellBlockEffectActive = true;
+
         for(int i = 0; i < AllSpellCasters.Length; i++)
         {
             AllSpellCasters[i].Block();
@@ -46,11 +49,14 @@ public class SpellBlocker : MonoBehaviour
 
     private void UnblockAllSpellCasters()
     {
+
         for (int i = 0; i < AllSpellCasters.Length; i++)
         {
             AllSpellCasters[i].Unblock();
         }
 
+        BlockingSpellCasters.Clear();
+        IsSpellBlockEffectActive = false;
         SetActiveVFX(false);
     }
 
@@ -74,6 +80,11 @@ public class SpellBlocker : MonoBehaviour
 
     public void UnblockOthers(SpellCaster spellCaster)
     {
+        if(IsSpellBlockEffectActive == true)
+        {
+            return;
+        }
+
         BlockingSpellCasters.Remove(spellCaster);
 
         for (int i = 0; i < spellCaster.BlocksThese.Length; i++)
@@ -81,8 +92,8 @@ public class SpellBlocker : MonoBehaviour
             bool CanUnblockThisOne = true;
             for (int j = 0; j < BlockingSpellCasters.Count; j++)
             {
-                if (!BlockingSpellCasters[j].BlocksThese
-                    .Contains(spellCaster.BlocksThese[j]))
+                if (BlockingSpellCasters[j].BlocksThese
+                    .Contains(spellCaster.BlocksThese[i]))
                 {
                     CanUnblockThisOne = false;
                 }
